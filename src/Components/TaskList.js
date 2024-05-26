@@ -5,7 +5,7 @@ class TaskList extends Component {
     render() {
       return (
         <ul class="todo-list">
-            <Task />
+          <Task />
         </ul>
       );
     }
