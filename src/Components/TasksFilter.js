@@ -1,21 +1,44 @@
 import React from 'react';
 
 export default function TaskFilter(props) {
-    // console.log('filter', props.props);
     return (
         <>
             <ul className='filters'>
                 <li>
-                    <button className={props.props.state == 'all' ? 'selected' : ''}>All</button>
+                    <button
+                        data-value="all"
+                        className={props.active == 'all' ? 'selected' : ''}
+                        onClick={props.props.listener}
+                    >
+                        All
+                    </button>
                 </li>
                 <li>
-                    <button className={props.props.state == 'active' ? 'selected' : ''}>Active</button>
+                    <button
+                        data-value="active"
+                        className={props.active == 'active' ? 'selected' : ''}
+                        onClick={props.props.listener}
+                    >
+                        Active
+                    </button>
                 </li>
                 <li>
-                    <button className={props.props.state == 'completed' ? 'selected' : ''}>Completed</button>
+                    <button
+                        data-value="completed"
+                        className={props.active == 'completed' ? 'selected' : ''}
+                        onClick={props.props.listener}
+                    >
+                        Completed
+                    </button>
                 </li>
             </ul>
-            <button className='clear-completed'>Clear completed</button>
+            <button
+                data-value="active"
+                className='clear-completed'
+                onClick={props.props.listener}
+            >
+                Clear completed
+            </button>
         </>
     )
 }

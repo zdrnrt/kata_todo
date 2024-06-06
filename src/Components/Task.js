@@ -44,15 +44,15 @@ function Task(props) {
     return (
         <li data-id={data.id} className={data.state}>
             <div className='view'>
-                <input className='toggle' type='checkbox' onChange={props.listener.toggle} defaultChecked={data.state == 'completed' ? true : false}/>
+                <input className='toggle' type='checkbox' data-value={data.state == 'completed' ? 'active' : 'completed' } onChange={props.listener.state} defaultChecked={data.state == 'completed' ? true : false}/>
                 <label>
                     <span className='description'>{data.title}</span>
-                    <span className='created'>{formatDistance(subDays(new Date(data.date), 0), new Date())}</span>
+                    <span className='created' data-date={data.date}>{formatDistance(new Date(data.date), new Date())}</span>
                 </label>
-                <button className='icon icon-edit' onClick={props.listener.edit}></button>
-                <button className='icon icon-destroy' onClick={props.listener.remove}></button>
+                <button className='icon icon-edit' data-value='editing' onClick={props.listener.state}></button>
+                <button className='icon icon-destroy' data-value='destroy' onClick={props.listener.destroy}></button>
             </div>
-            <input type="text" className="edit" onInput={props.listener.editing} value={data.title}/>
+            <input type="text" className="edit" onKeyDown={props.listener.edit} defaultValue={data.title}/>
         </li>
     );
 }
