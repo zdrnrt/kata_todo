@@ -16,22 +16,22 @@ export default function App() {
         { id: 4, state: 'completed', title: 'Задача 4', date: '2024-05-20' }
       ],
       listener: {
-        state (e) {
-          changeList(taskList.map( function(el){
-            if (el.id == e.target.closest('[data-id]').dataset.id){
+        state(e) {
+          changeList(taskList.map(function (el) {
+            if (el.id == e.target.closest('[data-id]').dataset.id) {
               el.state = e.target.dataset.value;
             }
             return el
           }));
         },
-        destroy (e) {
+        destroy(e) {
           let id = event.target.closest('[data-id]').dataset.id;
-          changeList(taskList.filter ( (el) => el.id != id ));
+          changeList(taskList.filter((el) => el.id != id));
         },
-        edit (e) {
+        edit(e) {
           if (e.nativeEvent.code === 'Enter') {
-            changeList(taskList.map( function(el){
-              if (el.id == e.target.closest('[data-id]').dataset.id){
+            changeList(taskList.map(function (el) {
+              if (el.id == e.target.closest('[data-id]').dataset.id) {
                 el.title = e.target.value;
                 el.state = 'active';
               }
@@ -39,14 +39,13 @@ export default function App() {
             }));
           }
         }
-        
       },
-      
+
       create: function (e) {
         let item = e.target;
         console.log(taskList);
         if (e.nativeEvent.code === 'Enter') {
-
+          changeList(taskList.filter((el) => el.id != id));
         }
       }
     },
@@ -55,6 +54,9 @@ export default function App() {
       listener: function () {
         let filter = event.target;
         setFilter(filter.dataset.value)
+      },
+      clear: function () {
+        changeList(taskList.filter((el) => el.state != 'completed'));
       }
     }
   };

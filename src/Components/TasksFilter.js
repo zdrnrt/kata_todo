@@ -35,7 +35,7 @@ export default function TaskFilter(props) {
             <button
                 data-value="active"
                 className='clear-completed'
-                onClick={props.props.listener}
+                onClick={props.props.clear}
             >
                 Clear completed
             </button>
