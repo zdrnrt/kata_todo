@@ -1,10 +1,31 @@
 import React, { Component, useState } from 'react';
+import { format } from "date-fns";
 import NewTaskForm from './NewTaskForm';
 import TaskList from './TaskList';
 import Footer from './Footer'
 
-
-
+/*
+export default class App extends Component {
+  render(){
+    console.log(this.props);
+    // let [filter, setFilter] = useState(this.props.props.filter.state);
+    // let [taskList, changeList] = useState(this.props.items.list);
+    
+    return (
+      <section className="todoapp">
+        <header className="header">
+          <h1>todos</h1>
+          {// <NewTaskForm props={this.props} /> }
+        </header>
+        <section className="main">
+          {// <TaskList props={this.data} list={taskList} active={filter} /> }
+          {// <Footer props={this.props} active={filter} /> }
+        </section>
+      </section>
+    );
+  }
+}
+*/
 export default function App() {
 
   let data = {
@@ -12,8 +33,8 @@ export default function App() {
       list: [
         { id: 1, state: 'active', title: 'Задача 1', date: '2024-05-25' },
         { id: 2, state: 'active', title: 'Задача 2', date: '2024-05-24' },
-        { id: 3, state: 'completed', title: 'Задача 3', date: '2024-05-23' },
-        { id: 4, state: 'completed', title: 'Задача 4', date: '2024-05-20' }
+        { id: 3, state: 'completed', title: 'Задача 3', date: '2024-06-1' },
+        { id: 4, state: 'completed', title: 'Задача 4', date: '2024-06-10:23:40' }
       ],
       listener: {
         state(e) {
@@ -29,7 +50,7 @@ export default function App() {
           changeList(taskList.filter((el) => el.id != id));
         },
         edit(e) {
-          if (e.nativeEvent.code === 'Enter') {
+          if (e.nativeEvent.code === 'Enter' && e.target.value != '') {
             changeList(taskList.map(function (el) {
               if (el.id == e.target.closest('[data-id]').dataset.id) {
                 el.title = e.target.value;
@@ -42,10 +63,9 @@ export default function App() {
       },
 
       create: function (e) {
-        let item = e.target;
-        console.log(taskList);
-        if (e.nativeEvent.code === 'Enter') {
-          changeList(taskList.filter((el) => el.id != id));
+        if (e.nativeEvent.code === 'Enter' && e.target.value != '') {
+          changeList([...taskList, {id: taskList.length + 1, state: 'active', title: e.target.value, date: format(new Date(), "yyyy-MM-dd:H:m")}]);
+          e.target.value = '';
         }
       }
     },
@@ -73,7 +93,7 @@ export default function App() {
       </header>
       <section className="main">
         <TaskList props={data} list={taskList} active={filter} />
-        <Footer props={data} active={filter} />
+        <Footer props={data} list={taskList} active={filter} />
       </section>
     </section>
   );

@@ -47,7 +47,7 @@ function Task(props) {
                 <input className='toggle' type='checkbox' data-value={data.state == 'completed' ? 'active' : 'completed' } onChange={props.listener.state} defaultChecked={data.state == 'completed' ? true : false}/>
                 <label>
                     <span className='description'>{data.title}</span>
-                    <span className='created' data-date={data.date}>{formatDistance(new Date(data.date), new Date())}</span>
+                    <span className='created' data-date={data.date}>{formatDistance(new Date(data.date), new Date(),  { includeSeconds: true })}</span>
                 </label>
                 <button className='icon icon-edit' data-value='editing' onClick={props.listener.state}></button>
                 <button className='icon icon-destroy' data-value='destroy' onClick={props.listener.destroy}></button>
