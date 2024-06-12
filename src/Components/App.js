@@ -4,28 +4,34 @@ import NewTaskForm from './NewTaskForm';
 import TaskList from './TaskList';
 import Footer from './Footer'
 
+// class
 /*
 export default class App extends Component {
   render(){
-    console.log(this.props);
+    console.log('app', this.props.props);
     // let [filter, setFilter] = useState(this.props.props.filter.state);
     // let [taskList, changeList] = useState(this.props.items.list);
-    
+    let data = this.props.props;
     return (
       <section className="todoapp">
         <header className="header">
           <h1>todos</h1>
-          {// <NewTaskForm props={this.props} /> }
+          <NewTaskForm />
         </header>
         <section className="main">
-          {// <TaskList props={this.data} list={taskList} active={filter} /> }
-          {// <Footer props={this.props} active={filter} /> }
+            <TaskList props={data}  />
+          {/
+            // list={this.props.props.items.list} active={this.props.props.filter}
+            <Footer props={this.props} active={filter} />
+          /}
         </section>
       </section>
     );
   }
 }
 */
+// function
+
 export default function App() {
 
   let data = {
