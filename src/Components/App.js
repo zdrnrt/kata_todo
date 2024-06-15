@@ -31,10 +31,11 @@ export default class App extends Component {
 */
 // function
 
-function App(props) {
+function App( {props = {list: [], filter: "all"}} = {} ) {
+// function App( props = {list, filter}) {
 
-  console.log('App', props);
-
+console.log('App props', props);
+// console.log('App data2', list, filter);
   let data = {
     items: {
       list: [
@@ -150,10 +151,9 @@ function App(props) {
   };
 
 
-  let [filter, setFilter] = useState(props.props.filter);
-  let [taskList, changeList] = useState(props.props.list);
-  console.log('app', taskList, props.props.list)
-
+  let [filter, setFilter] = useState(props.filter);
+  let [taskList, changeList] = useState(props.list);
+  console.log('app', taskList, props.list)
   return (
     <section className="todoapp">
       <header className="header">
@@ -166,13 +166,6 @@ function App(props) {
       </section>
     </section>
   );
-}
-
-App.defaultProps = {
-  props: {
-    list: [],
-    filter: 'all'
-  }
 }
 
 export default App;
