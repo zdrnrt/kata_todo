@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TaskFilter(props) {
+function TaskFilter(props) {
     return (
         <>
             <ul className='filters'>
@@ -8,7 +8,7 @@ export default function TaskFilter(props) {
                     <button
                         data-value="all"
                         className={props.active == 'all' ? 'selected' : ''}
-                        onClick={props.props.listener}
+                        onClick={props.listener['taskFilter']}
                     >
                         All
                     </button>
@@ -17,7 +17,7 @@ export default function TaskFilter(props) {
                     <button
                         data-value="active"
                         className={props.active == 'active' ? 'selected' : ''}
-                        onClick={props.props.listener}
+                        onClick={props.listener['taskFilter']}
                     >
                         Active
                     </button>
@@ -26,19 +26,21 @@ export default function TaskFilter(props) {
                     <button
                         data-value="completed"
                         className={props.active == 'completed' ? 'selected' : ''}
-                        onClick={props.props.listener}
+                        onClick={props.listener['taskFilter']}
                     >
                         Completed
                     </button>
                 </li>
             </ul>
             <button
-                data-value="active"
                 className='clear-completed'
-                onClick={props.props.clear}
+                onClick={props.listener['taskFilterClean']}
             >
                 Clear completed
             </button>
         </>
     )
 }
+
+
+export default TaskFilter;

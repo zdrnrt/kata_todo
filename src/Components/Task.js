@@ -1,44 +1,6 @@
 import React, {Component} from 'react';
 import { formatDistance, subDays } from 'date-fns';
 
-/*
-<li class='completed'>
-            <div class='view'>
-              <input class='toggle' type='checkbox'></input>
-              <label>
-                <span class='description'>Completed task</span>
-                <span class='created'>created 17 seconds ago</span>
-              </label>
-              <button class='icon icon-edit'></button>
-              <button class='icon icon-destroy'></button>
-            </div>
-          </li>
-          <li class='editing'>
-            <div class='view'>
-              <input class='toggle' type='checkbox'></input>
-              <label>
-                <span class='description'>Editing task</span>
-                <span class='created'>created 5 minutes ago</span>
-              </label>
-              <button class='icon icon-edit'></button>
-              <button class='icon icon-destroy'></button>
-            </div>
-            <input type='text' class='edit' value='Editing task'></input>
-          </li>
-          <li>
-            <div class='view'>
-              <input class='toggle' type='checkbox'></input>
-              <label>
-                <span class='description'>Active task</span>
-                <span class='created'>created 5 minutes ago</span>
-              </label>
-              <button class='icon icon-edit'></button>
-              <button class='icon icon-destroy'></button>
-            </div>
-          </li>
-
-*/
-
 //class
 /*
 export default class Task extends Component {
@@ -93,18 +55,19 @@ export default class Task extends Component {
 //function
 function Task(props) {
     let data = props.elem;
+    console.log('TaskItem', data, data.state == 'completed')
     return (
         <li data-id={data.id} className={data.state}>
             <div className='view'>
-                <input className='toggle' type='checkbox' data-value={data.state == 'completed' ? 'active' : 'completed' } onChange={props.listener.state} defaultChecked={data.state == 'completed' ? true : false}/>
+                <input className='toggle' type='checkbox' data-value={data.state == 'completed' ? 'active' : 'completed'} onChange={props.listener} checked={data.state == 'completed'}/>
                 <label>
                     <span className='description'>{data.title}</span>
-                    <span className='created' data-date={data.date}>{formatDistance(new Date(data.date), new Date(),  { includeSeconds: true })}</span>
+                    <span className='created'>{formatDistance(new Date(data.date), Date.now(),  { includeSeconds: true })}</span>
                 </label>
-                <button className='icon icon-edit' data-value='editing' onClick={props.listener.state}></button>
-                <button className='icon icon-destroy' data-value='destroy' onClick={props.listener.destroy}></button>
+                <button className='icon icon-edit' data-value='editing' onClick={props.listener}></button>
+                <button className='icon icon-destroy' data-value='destroy' onClick={props.listener}></button>
             </div>
-            <input type="text" className="edit" onKeyDown={props.listener.edit} defaultValue={data.title}/>
+            <input type="text" className="edit" onKeyDown={props.listener} data-value="edit" defaultValue={data.title}/>
         </li>
     );
 }

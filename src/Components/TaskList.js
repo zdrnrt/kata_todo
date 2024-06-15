@@ -31,23 +31,25 @@ export default class TaskList extends Component {
   }
 }
 */
+
 // function
 function TaskList(props) {
+  // console.log('taskList', props)
   let filter = props.active;
   let List = props.list.map( (item) => {
     if (filter == 'all') {
-      return <Task key={item.id} elem={item} listener={props.props.items.listener} />;
+      return <Task key={item.id} elem={item} listener={props.listener} />;
     } else {
       if (filter == item.state){
-        return <Task key={item.id} elem={item} listener={props.props.items.listener} />;
+        return <Task key={item.id} elem={item} listener={props.listener} />;
       }
     }
-  })
-    return (
-      <ul className="todo-list">
-        {List}
-      </ul>
-    );
+  } );
+  return (
+    <ul className="todo-list">
+      {List}
+    </ul>
+  );
 }
 
 export default TaskList;

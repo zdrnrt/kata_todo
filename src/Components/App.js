@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import { format } from "date-fns";
 import NewTaskForm from './NewTaskForm';
 import TaskList from './TaskList';
 import Footer from './Footer'
@@ -32,7 +31,9 @@ export default class App extends Component {
 */
 // function
 
-export default function App() {
+function App(props) {
+
+  console.log('App', props);
 
   let data = {
     items: {
@@ -76,10 +77,10 @@ export default function App() {
       }
     },
     filter: {
-      state: 'all',
+      // state: 'all',
       listener: function () {
         let filter = event.target;
-        setFilter(filter.dataset.value)
+        setFilter(event.target.dataset.value)
       },
       clear: function () {
         changeList(taskList.filter((el) => el.state != 'completed'));
@@ -87,20 +88,91 @@ export default function App() {
     }
   };
 
-  let [filter, setFilter] = useState(data.filter.state);
+  function taskFilter(e){
+    setFilter(e.target.dataset.value)
+  }
+  function taskFilterClean () {
+    changeList(taskList.filter((el) => el.state != 'completed'));
+  }
 
-  let [taskList, changeList] = useState(data.items.list);
+  function taskCreate(e) {
+    if (e.nativeEvent.code === 'Enter' && e.target.value != '') {
+      changeList([...taskList, {id: taskList.length + 1, state: 'active', title: e.target.value, date:  Date.now()}]);
+      e.target.value = '';
+    }
+  }
+
+  function taskListener(e){
+    console.log(e.target.dataset.value);
+    switch (e.target.dataset.value) {
+      case 'completed':
+      case 'active':
+      case 'editing':
+        taskState(e);
+        break;
+
+      case 'destroy':
+        tasDestroy(e);
+        break;
+    
+      case 'edit':
+        taskEdit(e);
+        break;
+    }
+  }
+
+  function taskState(e) {
+    changeList(taskList.map(function (el) {
+      if (el.id == e.target.closest('[data-id]').dataset.id) {
+        el.state = e.target.dataset.value;
+      };
+      return el;
+    }));
+  };
+
+  function tasDestroy(e) {
+    let id = event.target.closest('[data-id]').dataset.id;
+    changeList(taskList.filter((el) => el.id != id));
+  };
+
+  function taskEdit(e) {
+
+    if (e.nativeEvent.code === 'Enter' && e.target.value != '') {
+      changeList(taskList.map(function (el) {
+        if (el.id == e.target.closest('[data-id]').dataset.id) {
+          el.title = e.target.value;
+          el.state = 'active';
+        }
+        console.log('taskEdit', el);
+        return el
+      }));
+    };
+  };
+
+
+  let [filter, setFilter] = useState(props.props.filter);
+  let [taskList, changeList] = useState(props.props.list);
+  console.log('app', taskList, props.props.list)
 
   return (
     <section className="todoapp">
       <header className="header">
         <h1>todos</h1>
-        <NewTaskForm props={data} />
+        <NewTaskForm list={taskList} listener={taskCreate} />
       </header>
       <section className="main">
-        <TaskList props={data} list={taskList} active={filter} />
-        <Footer props={data} list={taskList} active={filter} />
+        <TaskList listener={taskListener} list={taskList} active={filter} />
+        <Footer list={taskList} active={filter} listener={{taskFilter, taskFilterClean}} />
       </section>
     </section>
   );
 }
+
+App.defaultProps = {
+  props: {
+    list: [],
+    filter: 'all'
+  }
+}
+
+export default App;

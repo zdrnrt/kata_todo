@@ -63,4 +63,13 @@ root.render(<App props={data} />);
 */
 
 // functional component
+
+
+let data = {
+  filter: 'all',
+  list: [
+    { id: 1, state: 'active', title: 'Задача 1', date: '2024-05-25' }
+  ]
+}
+
 root.render(<App />);
