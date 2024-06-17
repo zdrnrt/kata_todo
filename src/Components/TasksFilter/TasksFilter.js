@@ -1,7 +1,7 @@
 import React from 'react';
-import "./filter.css"
+import "./TasksFilter.css"
 
-function Filters(props) {
+function TasksFilter(props) {
     return (
         <>
             <ul className='filters'>
@@ -44,4 +44,4 @@ function Filters(props) {
 }
 
 
-export default Filters;
+export default TasksFilter;

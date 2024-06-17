@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import Form from "../Form"
-import List from "../List"
+import NewTaskForm from "../NewTaskForm"
+import TaskList from "../TaskList"
 import Footer from "../Footer"
 import "./App.css";
 
@@ -152,10 +152,10 @@ console.log('App props', props);
     <section className="todoapp">
       <header className="header">
         <h1>todos</h1>
-        <Form list={list} listener={taskCreate} />
+        <NewTaskForm list={list} listener={taskCreate} />
       </header>
       <section className="main">
-        <List listener={taskListener} list={list} active={filter} />
+        <TaskList listener={taskListener} list={list} active={filter} />
         <Footer list={list} active={filter} listener={{taskFilter, taskFilterClean}} />
       </section>
     </section>

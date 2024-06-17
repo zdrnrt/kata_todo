@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from '../Filter';
+import Filter from '../TasksFilter';
 import "./footer.css";
 
 export default function Footer(props){

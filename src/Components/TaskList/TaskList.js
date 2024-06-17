@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Task from '../Task';
-import "./List.css";
+import "./TaskList.css";
 //class
 /*
 export default class TaskList extends Component {
@@ -33,9 +33,9 @@ export default class TaskList extends Component {
 */
 
 // function
-function List(props) {
+function TaskList(props) {
   // console.log('taskList', props)
-  const TaskList = props.list.map( (item) => {
+  const list = props.list.map( (item) => {
     if (props.active == 'all') {
       return <Task key={item.id} elem={item} listener={props.listener} />;
     } else {
@@ -46,10 +46,9 @@ function List(props) {
   } );
   return (
     <ul className="todo-list">
-      {TaskList}
+      {list}
     </ul>
   );
 }
 
-export default List
-;
+export default TaskList;
