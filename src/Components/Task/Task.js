@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { formatDistance, subDays } from 'date-fns';
-
+import "./task.css"
 //class
 /*
 export default class Task extends Component {
@@ -62,7 +62,7 @@ function Task(props) {
                 <input className='toggle' type='checkbox' data-value={data.state == 'completed' ? 'active' : 'completed'} onChange={props.listener} checked={data.state == 'completed'}/>
                 <label>
                     <span className='description'>{data.title}</span>
-                    <span className='created'>{formatDistance(new Date(data.date), Date.now(),  { includeSeconds: true })}</span>
+                    <span className='created'>{formatDistance(new Date(data.date), Date.now(), { includeSeconds: true })}</span>
                 </label>
                 <button className='icon icon-edit' data-value='editing' onClick={props.listener}></button>
                 <button className='icon icon-destroy' data-value='destroy' onClick={props.listener}></button>

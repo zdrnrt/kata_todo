@@ -1,5 +1,5 @@
 import React, {ReactDOM, Component} from "react";
-import Task from './Task';
+import "./form.css";
 
 // class
 /*
@@ -21,7 +21,7 @@ export default class NewTaskForm extends Component {
 }
 */
 // function
-export default function NewTaskForm(props) {
+export default function Form(props) {
     return (
         <input className="new-todo" placeholder="What needs to be done?" onKeyDown={props.listener} autoFocus></input>
     )
