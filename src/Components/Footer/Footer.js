@@ -1,6 +1,6 @@
 import React from 'react';
 import Filter from '../TasksFilter';
-import "./footer.css";
+import "./Footer.css";
 
 export default function Footer(props){
     const count = props.list.reduce((sum, el) => sum += el.state == 'active' ? 1 : 0, 0 );

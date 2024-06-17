@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { formatDistance, subDays } from 'date-fns';
-import "./task.css"
+import "./Task.css"
 //class
 /*
 export default class Task extends Component {
