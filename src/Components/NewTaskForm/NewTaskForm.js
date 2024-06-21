@@ -1,4 +1,4 @@
-import React, {ReactDOM, Component} from "react";
+import React, { ReactDOM, Component } from "react";
 import "./NewTaskForm.css";
 
 // class
@@ -22,7 +22,12 @@ export default class NewTaskForm extends Component {
 */
 // function
 export default function NewTaskForm(props) {
-    return (
-        <input className="new-todo" placeholder="What needs to be done?" onKeyDown={props.listener} autoFocus></input>
-    )
+  return (
+    <input
+      className="new-todo"
+      placeholder="What needs to be done?"
+      onKeyDown={props.listener}
+      autoFocus
+    ></input>
+  );
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Task from '../Task';
 import "./TaskList.css";
 //class
@@ -35,20 +36,16 @@ export default class TaskList extends Component {
 // function
 function TaskList(props) {
   // console.log('taskList', props)
-  const list = props.list.map( (item) => {
+  const list = props.list.map((item) => {
     if (props.active == 'all') {
       return <Task key={item.id} elem={item} listener={props.listener} />;
     } else {
-      if (props.active == item.state){
+      if (props.active == item.state) {
         return <Task key={item.id} elem={item} listener={props.listener} />;
       }
     }
-  } );
-  return (
-    <ul className="todo-list">
-      {list}
-    </ul>
-  );
+  })
+  return <ul className="todo-list">{list}</ul>
 }
 
 export default TaskList;

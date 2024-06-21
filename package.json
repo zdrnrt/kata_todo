@@ -6,7 +6,8 @@
     "development": "webpack --mode development",
     "production": "webpack --mode production",
     "dev": "webpack serve --open --mode development",
-    "lint": "eslint ./src/Components"
+    "lint": "eslint ./src/Components/Footer",
+    "fix": "eslint ./src/Components/Footer --fix"
   },
   "keywords": [
     "react",

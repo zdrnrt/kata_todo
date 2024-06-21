@@ -1,7 +1,8 @@
 const { watchFile } = require('fs');
+const path = require('path');
+
 const FilemanagerWebpackPlugin = require('filemanager-webpack-plugin');
 const HmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 
 module.exports = {
     mode: 'development',
