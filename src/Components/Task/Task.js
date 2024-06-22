@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
-import "./Task.css";
+import './Task.css';
 //class
 /*
 export default class Task extends Component {
@@ -62,9 +62,9 @@ function Task(props) {
         <input
           className="toggle"
           type="checkbox"
-          data-value={data.state == "completed" ? "active" : "completed"}
+          data-value={data.state == 'completed' ? 'active' : 'completed'}
           onChange={props.listener}
-          checked={data.state == "completed"}
+          checked={data.state == 'completed'}
         />
         <label>
           <span className="description">{data.title}</span>
@@ -74,24 +74,10 @@ function Task(props) {
             })}
           </span>
         </label>
-        <button
-          className="icon icon-edit"
-          data-value="editing"
-          onClick={props.listener}
-        ></button>
-        <button
-          className="icon icon-destroy"
-          data-value="destroy"
-          onClick={props.listener}
-        ></button>
+        <button className="icon icon-edit" data-value="editing" onClick={props.listener}></button>
+        <button className="icon icon-destroy" data-value="destroy" onClick={props.listener}></button>
       </div>
-      <input
-        type="text"
-        className="edit"
-        onKeyDown={props.listener}
-        data-value="edit"
-        defaultValue={data.title}
-      />
+      <input type="text" className="edit" onKeyDown={props.listener} data-value="edit" defaultValue={data.title} />
     </li>
   );
 }

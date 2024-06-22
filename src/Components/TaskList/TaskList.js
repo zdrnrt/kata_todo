@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Task from '../Task';
-import "./TaskList.css";
+import './TaskList.css';
 //class
 /*
 export default class TaskList extends Component {
@@ -44,8 +44,8 @@ function TaskList(props) {
         return <Task key={item.id} elem={item} listener={props.listener} />;
       }
     }
-  })
-  return <ul className="todo-list">{list}</ul>
+  });
+  return <ul className="todo-list">{list}</ul>;
 }
 
 export default TaskList;

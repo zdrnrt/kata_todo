@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import NewTaskForm from "../NewTaskForm";
-import TaskList from "../TaskList";
-import Footer from "../Footer";
-import "./App.css";
+import NewTaskForm from '../NewTaskForm';
+import TaskList from '../TaskList';
+import Footer from '../Footer';
+import './App.css';
 
 // class
 /*
@@ -39,9 +39,7 @@ function App({
     filter: 'all',
   },
 } = {}) {
-  // function App( props = {list, filter}) {
-
-  console.log("App props", props);
+  console.log('App props', props);
   // console.log('App data2', list, filter);
   const data = {
     items: {
@@ -63,9 +61,9 @@ function App({
               if (el.id == e.target.closest('[data-id]').dataset.id) {
                 el.state = e.target.dataset.value;
               }
-              return el
-            }),
-          )
+              return el;
+            })
+          );
         },
         destroy(e) {
           let id = event.target.closest('[data-id]').dataset.id;
@@ -79,9 +77,9 @@ function App({
                   el.title = e.target.value;
                   el.state = 'active';
                 }
-                return el
-              }),
-            )
+                return el;
+              })
+            );
           }
         },
       },
@@ -105,7 +103,7 @@ function App({
       // state: 'all',
       listener: function () {
         let filter = event.target;
-        setFilter(event.target.dataset.value)
+        setFilter(event.target.dataset.value);
       },
       clear: function () {
         changeList(list.filter((el) => el.state != 'completed'));
@@ -114,14 +112,14 @@ function App({
   };
 
   function taskFilter(e) {
-    setFilter(e.target.dataset.value)
+    setFilter(e.target.dataset.value);
   }
   function taskFilterClean() {
     changeList(list.filter((el) => el.state != 'completed'));
   }
 
   function taskCreate(e) {
-    if (e.nativeEvent.code === 'Enter' && e.target.value != '') {
+    if (e.nativeEvent.code === 'Enter' && e.target.value.trim() != '') {
       changeList([
         ...list,
         {
@@ -143,9 +141,9 @@ function App({
       case 'edit':
         taskEdit(e);
         break;
-    default:
+      default:
         taskState(e);
-        break
+        break;
     }
   }
 
@@ -156,8 +154,8 @@ function App({
           el.state = e.target.dataset.value;
         }
         return el;
-      }),
-    )
+      })
+    );
   }
 
   function tasDestroy(e) {
@@ -173,9 +171,9 @@ function App({
             el.title = e.target.value;
             el.state = 'active';
           }
-          return el
-        }),
-      )
+          return el;
+        })
+      );
     }
   }
 
@@ -190,11 +188,7 @@ function App({
       </header>
       <section className="main">
         <TaskList listener={taskListener} list={list} active={filter} />
-        <Footer
-          list={list}
-          active={filter}
-          listener={{ taskFilter, taskFilterClean }}
-        />
+        <Footer list={list} active={filter} listener={{ taskFilter, taskFilterClean }} />
       </section>
     </section>
   );
